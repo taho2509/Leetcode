@@ -20,8 +20,6 @@ public:
         int n = orig.size();
         int m = orig[0].size();
         
-        int nei = 0;
-        
         int count = 0;
         for(int i = 0; i < 8; ++i) {
             int nr = r + mov[i], nc = c + mov[i + 2];
