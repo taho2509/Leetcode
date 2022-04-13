@@ -6,14 +6,10 @@ public:
         vector<int> x = {0,1,0,-1};
         vector<int> y = {1,0,-1,0};
         int currentDir = 0;
-        queue<pair<int,int>> next;
-        next.push({0,0});
+        pair<int,int> current = {0,0};
         int nextx, nexty;
         
         while(true) {
-            auto current = next.front();
-            next.pop();
-            
             matrix[current.first][current.second] = counter;
             if(counter == n*n) break;
             
@@ -29,7 +25,7 @@ public:
                 nexty = current.second + y[currentDir % 4];
             }
             
-            next.push({nextx, nexty});
+            current = {nextx, nexty};
         }
         
         return matrix;
