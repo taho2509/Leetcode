@@ -2,18 +2,14 @@ class Solution {
 public:
     vector<vector<int>> generateMatrix(int n) {
         vector<vector<int>> matrix(n, vector<int>(n,0));
-        int counter = 1;
         vector<int> x = {0,1,0,-1};
         vector<int> y = {1,0,-1,0};
         int currentDir = 0;
         pair<int,int> current = {0,0};
         int nextx, nexty;
         
-        while(true) {
-            matrix[current.first][current.second] = counter;
-            if(counter == n*n) break;
-            
-            counter++;
+        for(int i = 0; i < n*n; ++i) {
+            matrix[current.first][current.second] = i + 1;
             
             nextx = current.first + x[currentDir % 4];
             nexty = current.second + y[currentDir % 4];
