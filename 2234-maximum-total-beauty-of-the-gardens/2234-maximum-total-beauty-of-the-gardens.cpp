@@ -1,7 +1,6 @@
 class Solution {
 public:
     long long maximumBeauty(vector<int>& flowers, long long newFlowers, int target, int full, int partial) {
-        //cout << "start" << endl;
         sort(flowers.begin(), flowers.end());
         
         flowers[0] = min(flowers[0], target);
@@ -23,8 +22,6 @@ public:
         if(newFlowers >= cost[n - 1] + (target - flowers[n - 1]) * n)
             return max((long long)n*full, (long long)full*(n - 1) + (long long)partial*(target-1));
         
-        //cout << "full" << endl;
-        
         long long ans = 0;
         int idx;
         long long bar;
@@ -32,11 +29,7 @@ public:
             auto it = lower_bound(cost.begin(), cost.begin() + j, newFlowers);
             idx = it - cost.begin();
 
-            if(cost[idx] > newFlowers){
-                --idx;
-                //cout << "change ";
-            }
-            //cout << idx << endl;
+            if(cost[idx] > newFlowers) --idx;
             
             bar = flowers[idx] + (newFlowers - cost[idx])/(idx + 1);
             
