@@ -11,15 +11,13 @@
  */
 class BSTIterator {
     stack<TreeNode*> s;
-    TreeNode* root;
     TreeNode* current;
 public:
-    BSTIterator(TreeNode* root):root(root) {
-        current = root;
-        go();
+    BSTIterator(TreeNode* root):current(root) {
+        traverse();
     }
     
-    void go() {
+    void traverse() {
         while(current->left != nullptr) {
             s.push(current);
             current = current->left;
@@ -30,7 +28,7 @@ public:
         int v = current->val;
         if(current->right != nullptr) {
             current = current->right;
-            go();
+            traverse();
         } else {
             if(!s.empty()) {
                 current = s.top();
