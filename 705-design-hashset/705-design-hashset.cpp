@@ -1,20 +1,21 @@
+#define mod 199933
 class MyHashSet {
     vector<bool> keys;
 public:
     MyHashSet() {
-        keys = vector<bool>(1000001, false);
+        keys = vector<bool>(mod, false);
     }
     
     void add(int key) {
-        keys[key] = true;
+        keys[key%mod] = true;
     }
     
     void remove(int key) {
-        keys[key] = false;
+        keys[key%mod] = false;
     }
     
     bool contains(int key) {
-        return keys[key];
+        return keys[key%mod];
     }
 };
 
