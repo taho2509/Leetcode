@@ -1,21 +1,21 @@
-#define mod 199933
+#define mod 1193
 class MyHashSet {
-    vector<bool> keys;
+    vector<set<int>> keys;
 public:
     MyHashSet() {
-        keys = vector<bool>(mod, false);
+        keys = vector<set<int>>(mod);
     }
     
     void add(int key) {
-        keys[key%mod] = true;
+        keys[key%mod].insert(key);
     }
     
     void remove(int key) {
-        keys[key%mod] = false;
+        keys[key%mod].erase(key);
     }
     
     bool contains(int key) {
-        return keys[key%mod];
+        return keys[key%mod].count(key) == 1;
     }
 };
 
