@@ -27,16 +27,15 @@ public:
         queue<pair<int,int>> q;
         q.push({0,0});
         
-        vector<int> x{1,0,-1,0};
-        vector<int> y{0,1,0,-1};
+        vector<int> mov{1,0,-1,0,1};
         
         while(!q.empty()){
             auto p = q.front();
             q.pop();
             
             for(int i = 0; i < 4; ++i) {
-                int tx = p.first + x[i];
-                int ty = p.second + y[i];
+                int tx = p.first + mov[i];
+                int ty = p.second + mov[i + 1];
                 
                 if(tx < 0) continue;
                 if(tx >= n) continue;
