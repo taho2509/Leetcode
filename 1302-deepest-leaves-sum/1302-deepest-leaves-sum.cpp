@@ -12,27 +12,23 @@
 class Solution {
 public:
     int deepestLeavesSum(TreeNode* root) {
-        ios::sync_with_stdio(false);
-        cin.tie(nullptr);
-        cout.tie(nullptr);
-        return sum(root).first;
-    }
-    
-    pair<int,int> sum(TreeNode* root) {
-        if(root == nullptr) return {0,0};
+        int ans = 0;
+        queue<TreeNode*> q;
+        q.push(root);
         
-        auto [vleft, hleft] = sum(root->left);
-        auto [vright, hright] = sum(root->right);
-        if(vleft != 0 && vright != 0) {
-            if(hleft == hright) return {vleft + vright, hleft + 1};
-            if(hleft > hright) return {vleft, hleft + 1};
-            return {vright, hright + 1};
-        } else if(vleft != 0) {
-            return {vleft, hleft + 1};
-        } else if(vright != 0) {
-            return {vright, hright + 1};
-        } else {
-            return {root->val, 1};
+        while(!q.empty()) {
+            int n = q.size();
+            int t = 0;
+            for(int i = 0; i < n; ++i) {
+                auto r = q.front();
+                q.pop();
+                t += r->val;
+                if(r->left != nullptr) q.push(r->left);
+                if(r->right != nullptr) q.push(r->right);
+            }
+            ans = t;
         }
+        
+        return ans;
     }
 };
