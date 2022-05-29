@@ -2,12 +2,12 @@ class Solution {
 public:
     int maxProduct(vector<string>& words) {
         int n = words.size();
-        vector<vector<bool>> processed(n);
+        vector<int> processed(n);
         
         for(int i = 0; i < n; ++i) {
-            vector<bool> letters(26, false);
+            int letters = 0;
             for(char c: words[i]) {
-                letters[c - 'a'] = true;
+                letters = letters | (1 << (c - 'a'));
             }
             processed[i] = letters;
         }
@@ -16,20 +16,12 @@ public:
         
         for(int i = 0; i < n; ++i) {
             for(int j = i + 1; j < n; ++j) {
-                if(!collision(processed[i], processed[j])) {
+                if((processed[i] & processed[j]) == 0) {
                     ans = max(ans, (int)words[i].size() * (int)words[j].size());
                 }
             }
         }
         
         return ans;
-    }
-    
-    bool collision(vector<bool> &a, vector<bool> &b) {
-        for(int i = 0; i < 26; ++i) {
-            if(a[i] && b[i]) return true;
-        }
-        
-        return false;
     }
 };
