@@ -10,8 +10,21 @@ public:
     }
     
     string get(string key, int timestamp) {
-        auto it = store[key].upper_bound(timestamp);
-        return it == store[key].begin() ? "" : prev(it)->second;
+        if(store.count(key) == 0) return "";
+        
+        auto it = store[key].lower_bound(timestamp);
+        if(store[key].begin() == store[key].end()) return "";
+        if(it == store[key].end()) {
+            --it;
+            return it->second;
+        }
+        if(it == store[key].begin()) {
+            if(it->first > timestamp) return "";
+            return it->second;
+        }
+        if(it->first == timestamp) return it->second;
+        --it;
+        return it->second;
     }
 };
 
