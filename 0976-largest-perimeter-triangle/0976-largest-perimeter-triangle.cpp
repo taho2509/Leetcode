@@ -2,16 +2,15 @@ class Solution {
 public:
     int largestPerimeter(vector<int>& nums) {
         sort(nums.rbegin(), nums.rend());
-        
-        int ans = 0;
+
         int n = nums.size();
         for(int i = 2; i < n; ++i) {
             if(isT(nums[i - 2], nums[i - 1], nums[i])) {
-                ans = max(ans, nums[i - 2] + nums[i - 1] + nums[i]);
+                return nums[i - 2] + nums[i - 1] + nums[i];
             }
         }
         
-        return ans;
+        return 0;
     }
     
     bool isT(int a, int b, int c) {
