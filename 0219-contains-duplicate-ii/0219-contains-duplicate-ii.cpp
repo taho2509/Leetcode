@@ -1,7 +1,7 @@
 class Solution {
 public:
     bool containsNearbyDuplicate(vector<int>& nums, int k) {
-        set<int> found;
+        unordered_set<int> found;
         int n = nums.size();
         ++k;
         
