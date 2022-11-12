@@ -3,7 +3,7 @@ class MedianFinder {
     priority_queue<double> s;
  
     // min heap to store the greater half elements
-    priority_queue<double,vector<double>,greater<double> > g;
+    priority_queue<double> g;
 
     bool empty;
     double med;
@@ -21,13 +21,13 @@ public:
             {
                 if (num < med)
                 {
-                    g.push(s.top());
+                    g.push(-s.top());
                     s.pop();
                     s.push(num);
                 }
-                else g.push(num);
+                else g.push(-num);
 
-                med = (s.top() + g.top())/2.0;
+                med = (s.top() + -g.top())/2.0;
             }
 
             // case2(both heaps are balanced)
@@ -40,8 +40,8 @@ public:
                 }
                 else
                 {
-                    g.push(num);
-                    med = (double)g.top();
+                    g.push(-num);
+                    med = (double)(-g.top());
                 }
             }
 
@@ -50,14 +50,14 @@ public:
             {
                 if (num > med)
                 {
-                    s.push(g.top());
+                    s.push(-g.top());
                     g.pop();
-                    g.push(num);
+                    g.push(-num);
                 }
                 else
                     s.push(num);
 
-                med = (s.top() + g.top())/2.0;
+                med = (s.top() + -g.top())/2.0;
             }
         }
     }
